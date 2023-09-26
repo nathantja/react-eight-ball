@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./EightBall.css"
+import "./EightBall.css";
+import _ from "lodash";
 
 const ANSWERS = [
   { msg: "It is certain.", color: "green" },
@@ -24,13 +25,33 @@ const ANSWERS = [
   { msg: "Very doubtful.", color: "red" },
 ]
 
+/** EightBall
+ *
+ * Eightball which displays messages on click, and changes color accordingly
+ *
+ * Properties:
+ * - Answers: array of objects like { msg, color }
+ *
+ * State:
+ * - bgColor: CSS color
+ * - message: string message
+ *
+ *  App -> EightBall
+  */
+
 function EightBall({ answers = ANSWERS }) {
-  const [color, setColor] = useState("black")
-  const [msg, setMsg] = useState("Think of a Question")
+  const [bgColor, setBgColor] = useState("black")
+  const [message, setMessage] = useState("Think of a Question")
+
+  function setStates () {
+    const { msg, color } = _.sample(answers);
+    setBgColor(color);
+    setMessage(msg);
+  }
 
   return (
-    <div className="EightBall">
-      <h1>{msg}</h1>
+    <div className="EightBall" onClick={ setStates } style={{ backgroundColor: bgColor }}>
+      <h1>{message}</h1>
     </div>
   )
 

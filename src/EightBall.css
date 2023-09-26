@@ -6,4 +6,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+.EightBall h1 {
+  color: white;
 }
