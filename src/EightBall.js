@@ -23,13 +23,13 @@ const ANSWERS = [
   { msg: "My sources say no.", color: "red" },
   { msg: "Outlook not so good.", color: "red" },
   { msg: "Very doubtful.", color: "red" },
-]
+];
 
 /** EightBall
  *
  * Eightball which displays messages on click, and changes color accordingly
  *
- * Properties:
+ * Props:
  * - Answers: array of objects like { msg, color }
  *
  * State:
@@ -40,22 +40,24 @@ const ANSWERS = [
   */
 
 function EightBall({ answers = ANSWERS }) {
-  const [bgColor, setBgColor] = useState("black")
-  const [message, setMessage] = useState("Think of a Question")
+  const [bgColor, setBgColor] = useState("black");
+  const [message, setMessage] = useState("Think of a Question");
 
-  function setStates () {
+  function setStates() {
     const { msg, color } = _.sample(answers);
     setBgColor(color);
     setMessage(msg);
   }
 
   return (
-    <div className="EightBall" onClick={ setStates } style={{ backgroundColor: bgColor }}>
+    <div className="EightBall"
+      onClick={setStates}
+      style={{ backgroundColor: bgColor }}>
       <h1>{message}</h1>
     </div>
-  )
+  );
 
 }
 
 
-export default EightBall
+export default EightBall;
